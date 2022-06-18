@@ -38,7 +38,10 @@ app.get("/tweets", (req, res) => {
     }
     res.send(lastTweets);
   } else {
-    res.send(newTweets);
+    for (let i = 0; i < newTweets.length; i++) {
+      lastTweets.unshift(newTweets[i]);
+    }
+    res.send(lastTweets);
   }
 });
 
