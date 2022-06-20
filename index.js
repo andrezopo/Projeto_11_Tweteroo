@@ -15,14 +15,24 @@ const tweets = [];
 
 app.post("/sign-up", (req, res) => {
   const user = req.body;
+  const { username, avatar } = user;
+  if (!username || !avatar) {
+    res.status(400).send("Todos os campos são obrigatórios!");
+    return;
+  }
   users.push(user);
-  res.send("OK");
+  res.status(201).send("OK");
 });
 
 app.post("/tweets", (req, res) => {
-  const tweet = req.body;
-  tweets.push(tweet);
-  res.send("OK");
+  const tweteru = req.body;
+  const { username, tweet } = tweteru;
+  if (!username || !tweet) {
+    res.status(400).send("Todos os campos são obrigatórios!");
+    return;
+  }
+  tweets.push(tweteru);
+  res.status(201).send("OK");
 });
 
 app.get("/tweets", (req, res) => {
